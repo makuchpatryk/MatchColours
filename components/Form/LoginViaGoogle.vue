@@ -12,7 +12,8 @@ const onSubmit = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "http://localhost:3000/confirm",
+        redirectTo:
+          process.env.LOGIN_REDIRECT || "http://localhost:3000/confirm",
       },
     });
     if (error) throw error;

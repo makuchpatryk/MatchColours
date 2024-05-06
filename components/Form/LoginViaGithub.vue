@@ -8,7 +8,7 @@ import useSignSupabase from "~/composables/useSignSupabase";
 const { loading, onSubmit } = useSignSupabase({
   provider: "github",
   options: {
-    redirectTo: "http://localhost:3000/confirm",
+    redirectTo: process.env.LOGIN_REDIRECT || "http://localhost:3000/confirm",
   },
 });
 </script>
