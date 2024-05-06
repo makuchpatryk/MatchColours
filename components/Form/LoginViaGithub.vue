@@ -4,11 +4,12 @@
 
 <script setup lang="ts">
 import useSignSupabase from "~/composables/useSignSupabase";
+const config = useRuntimeConfig();
 
 const { loading, onSubmit } = useSignSupabase({
   provider: "github",
   options: {
-    redirectTo: process.env.LOGIN_REDIRECT || "http://localhost:3000/confirm",
+    redirectTo: config.public.loginRedirect || "http://localhost:3000/confirm",
   },
 });
 </script>

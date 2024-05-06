@@ -5,15 +5,17 @@
 <script setup lang="ts">
 const supabase = useSupabaseClient();
 const loading = ref(false);
+const config = useRuntimeConfig();
 
 const onSubmit = async () => {
   try {
     loading.value = true;
+
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
         redirectTo:
-          process.env.LOGIN_REDIRECT || "http://localhost:3000/confirm",
+          config.public.loginRedirect || "http://localhost:3000/confirm",
       },
     });
     if (error) throw error;
