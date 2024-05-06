@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div
-      :class="`color ${!color && 'not-active'}`"
+      :class="`color ${!color && !currentColor ? 'not-active' : ''}`"
       v-for="(color, index) in colors"
       :key="color || index"
       :style="{
@@ -37,7 +37,7 @@ const selectButtle = (value: string, index: number) => {
   cursor: pointer;
   border: 1px solid #333;
 }
-.color:hover {
+.color:hover:not(.not-active) {
   opacity: 0.8;
 }
 .color.not-active {

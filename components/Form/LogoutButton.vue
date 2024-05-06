@@ -20,8 +20,6 @@ const onLogout = async () => {
     if (error instanceof Error) {
       alert(error.message);
     }
-  } finally {
-    loading.value = false;
   }
 };
 </script>

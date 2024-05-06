@@ -1,12 +1,14 @@
 <template>
   <button :class="classes" v-bind="$attrs">
     <Preloader v-if="loading" />
-    <slot />
+    <span class="button__content">
+      <slot />
+    </span>
   </button>
 </template>
 
 <script setup lang="ts">
-import type { TButtonVariants, TButtonColors, TButtonSizes } from "~/types";
+import type { TButtonVariants, TButtonColors, TButtonSizes } from "@/types";
 
 export interface Props {
   variants?: TButtonVariants;
@@ -79,16 +81,30 @@ const classes = computed(() => [
   color: #ccc;
 }
 
-.button--solid {
-}
 .button--ghost {
+  background: var(--white);
+  color: var(--background);
 }
-.button--ouline {
+.button--ghost:hover {
+  background-color: color-mix(in srgb, var(--white), #000 15%);
+}
+.button--outline {
   background: none;
+  border: 1px solid var(--background);
+  color: var(--background);
+}
+
+.button--outline:hover {
+  background: none;
+  border: 1px solid color-mix(in srgb, var(--white), #000 15%);
+  color: color-mix(in srgb, var(--white), #000 15%);
 }
 
 .button--block {
   width: 100%;
   display: block;
+}
+.button__content {
+  padding: 4px 0;
 }
 </style>

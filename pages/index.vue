@@ -60,7 +60,8 @@ const selectButtle = ({ value, index }: { value: string; index: number }) => {
   if (currentColor.value !== "") {
     buttles.value[buttles.value.findIndex((i) => i === currentColor.value)] =
       value;
-    colors.value[colors.value.findIndex((i) => i === currentColor.value)] = "";
+    colors.value[colors.value.findIndex((i) => i === currentColor.value)] =
+      value;
     buttles.value[index] = currentColor.value;
 
     currentColor.value = "";
@@ -69,7 +70,7 @@ const selectButtle = ({ value, index }: { value: string; index: number }) => {
   }
 };
 const onCheckOrder = () => {
-  classesResult.value = [...classesResult.value, "shake"];
+  classesResult.value = [...classesResult.value, "shake-animation"];
   let matchNumberLocal = 0;
 
   for (let i = 0; i < rightOrder.value.length; i += 1) {
@@ -79,7 +80,9 @@ const onCheckOrder = () => {
   }
   matchNumber.value = matchNumberLocal;
   setTimeout(() => {
-    classesResult.value = classesResult.value.filter((i) => i !== "shake");
+    classesResult.value = classesResult.value.filter(
+      (i) => i !== "shake-animation"
+    );
   }, 1000);
   setTimeout(() => {
     if (matchNumber.value === rightOrder.value.length)
@@ -101,7 +104,7 @@ const onCheckOrder = () => {
   text-align: center;
   margin: 20px;
 }
-.result.shake {
+.result.shake-animation {
   animation: horizontal-shaking 0.5s 1;
 }
 .action-buttons {

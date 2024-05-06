@@ -35,8 +35,8 @@ watch(openModel, () => {
 
 <style scoped>
 .modal {
-  background-color: white;
-  padding: 15px 20px;
+  background-color: var(--white);
+  padding: 10px 20px;
   position: absolute;
   bottom: 10%;
   left: 50%;

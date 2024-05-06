@@ -25,8 +25,6 @@ export default function useSignSupabase({
       if (errorSupabase instanceof Error) {
         error.value = errorSupabase.message;
       }
-    } finally {
-      loading.value = false;
     }
   };
   return { loading, error, onSubmit };
