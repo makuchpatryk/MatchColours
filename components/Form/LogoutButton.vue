@@ -1,5 +1,5 @@
 <template>
-  <UButton label="Log out" :loading="loading" @click="onLogout" />
+  <Button :loading="loading" @click="onLogout"> Log out </Button>
 </template>
 
 <script setup lang="ts">
@@ -13,10 +13,9 @@ const onLogout = async () => {
     loading.value = true;
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
-    else {
-      store.setUser(null);
-      store.setAuth(false);
-    }
+    store.setUser(null);
+    store.setAuth(false);
+    navigateTo("/login");
   } catch (error) {
     if (error instanceof Error) {
       alert(error.message);

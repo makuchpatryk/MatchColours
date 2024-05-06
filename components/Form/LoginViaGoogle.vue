@@ -1,7 +1,5 @@
 <template>
-  <UButton color="gray" block class="mt-6" :loading="loading" @click="onSubmit"
-    >Login via Google</UButton
-  >
+  <Button block :loading="loading" @click="onSubmit">Login via Google</Button>
 </template>
 
 <script setup lang="ts">
@@ -13,6 +11,9 @@ const onSubmit = async () => {
     loading.value = true;
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
+      options: {
+        redirectTo: "http://localhost:3000/confirm",
+      },
     });
     if (error) throw error;
   } catch (error) {

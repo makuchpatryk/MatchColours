@@ -9,7 +9,7 @@
         border: color && currentColor === color ? '1px solid white' : '',
       }"
       @click="selectButtle(color, index)"
-    ></div>
+    />
   </div>
 </template>
 

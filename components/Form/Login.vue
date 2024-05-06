@@ -1,35 +1,24 @@
 <template>
-  <UModal v-model="open" prevent-close>
-    <UCard
-      :ui="{
-        ring: '',
-        divide: 'divide-y divide-gray-100 dark:divide-gray-800',
-      }"
-    >
-      <template #header>
-        <div class="flex items-center justify-between">
-          <h3
-            class="text-base font-semibold leading-6 text-gray-900 dark:text-white"
-          >
-            Login
-          </h3>
-          <UButton
-            color="gray"
-            variant="ghost"
-            icon="i-heroicons-x-mark-20-solid"
-            class="-my-1"
-            @click="open = false"
-          />
-        </div>
-      </template>
-      <FormLoginViaGithub />
-      <FormLoginViaGoogle />
-    </UCard>
-  </UModal>
+  <div class="signup-form">
+    <h1 class="signup-form--heading">Login</h1>
+    <FormLoginViaGithub />
+    <FormLoginViaGoogle />
+  </div>
 </template>
 
-<script setup lang="ts">
-const open = defineModel();
-</script>
+<script setup lang="ts"></script>
 
-<style scoped></style>
+<style scoped>
+.signup-form {
+  width: 600px;
+  background-color: var(--bg-form-main);
+  border-radius: var(--border-radius-main);
+  padding: 20px;
+  margin: auto;
+}
+.signup-form--heading {
+  text-align: center;
+  width: 100%;
+  color: var(--text-color-main);
+}
+</style>

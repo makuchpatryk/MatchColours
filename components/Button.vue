@@ -41,10 +41,14 @@ const classes = computed(() => [
   background-color: var(--background);
   padding: 8px 12px;
   margin: 8px 12px;
-  border-radius: 10px;
+  border-radius: var(--border-radius-main);
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
 }
 .button:hover {
   background-color: color-mix(in srgb, var(--background), #000 15%);
@@ -67,6 +71,20 @@ const classes = computed(() => [
   --backgroundHover: var(--secondary);
 
   color: #ccc;
+}
+
+.button--block {
+  margin: 8px 0;
+
+  color: #ccc;
+}
+
+.button--solid {
+}
+.button--ghost {
+}
+.button--ouline {
+  background: none;
 }
 
 .button--block {

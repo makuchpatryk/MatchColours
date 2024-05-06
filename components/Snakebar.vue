@@ -41,7 +41,7 @@ watch(openModel, () => {
   bottom: 10%;
   left: 50%;
   transform: translate(-50%, 0);
-  border-radius: 10px;
+  border-radius: var(--border-radius-main);
 }
 
 .modal__text {

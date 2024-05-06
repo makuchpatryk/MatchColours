@@ -1,8 +1,14 @@
 export interface IUseSignSupabase {
   provider: "github" | "google";
+  options: {
+    redirectTo: string;
+  };
 }
 
-export default function useSignSupabase({ provider }: IUseSignSupabase) {
+export default function useSignSupabase({
+  provider,
+  options,
+}: IUseSignSupabase) {
   const supabase = useSupabaseClient();
   const loading = ref(false);
   const error = ref<string>("");
@@ -12,6 +18,7 @@ export default function useSignSupabase({ provider }: IUseSignSupabase) {
       loading.value = true;
       const { error: errorSupabase } = await supabase.auth.signInWithOAuth({
         provider,
+        options,
       });
       if (errorSupabase) throw errorSupabase;
     } catch (errorSupabase) {
