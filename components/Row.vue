@@ -5,11 +5,12 @@
       v-for="(color, index) in colors"
       :key="color || index"
       :style="{
-        backgroundColor: color ? color : '#333',
-        border: color && currentColor === color ? '1px solid white' : '',
+        opacity: color && currentColor === color ? 0.7 : 1,
       }"
-      @click="selectButtle(color, index)"
-    />
+      @click="selectBottle(color, index)"
+    >
+      <BottleIcon :color="color ? color : 'rgba(0,0,0,0)'" />
+    </div>
   </div>
 </template>
 
@@ -21,7 +22,7 @@ export interface Props {
 
 const { colors, currentColor } = defineProps<Props>();
 const emit = defineEmits(["click"]);
-const selectButtle = (value: string, index: number) => {
+const selectBottle = (value: string, index: number) => {
   emit("click", { value, index });
 };
 </script>
@@ -30,17 +31,24 @@ const selectButtle = (value: string, index: number) => {
 .row {
   display: flex;
   gap: 20px;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: var(--border-radius-main);
+  background-color: var(--bg-color-secondary);
 }
 .color {
-  width: 100%;
+  width: 100px;
   height: 100px;
   cursor: pointer;
-  border: 1px solid #333;
 }
 .color:hover:not(.not-active) {
   opacity: 0.8;
 }
 .color.not-active {
   cursor: auto;
+}
+
+.color .bottle-icon {
+  height: 100%;
 }
 </style>

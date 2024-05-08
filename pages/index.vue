@@ -2,13 +2,7 @@
   <h1 :class="classesResult">
     Correct matches: <span class="result__number">{{ matchNumber }}</span>
   </h1>
-  <Row :colors="buttles" :current-color="currentColor" @click="selectButtle" />
-  <span class="space" />
-  <Row
-    :colors="colors"
-    :current-color="currentColor"
-    @click="({ value }) => (currentColor = value)"
-  />
+  <Row :colors="bottles" :current-color="currentColor" @click="selectBottle" />
   <div class="action-buttons">
     <Button @click="onCheckOrder" color="secondary">Check Order</Button>
     <Button @click="onResetGame">Reset Game</Button>
@@ -28,8 +22,7 @@ import {
 } from "@/default/game";
 
 const rightOrder = ref(shuffleArray([...BASE_COLOURS]));
-const buttles = ref<string[]>([...EMPTY_ARRAY]);
-const colors = ref<string[]>([...BASE_COLOURS]);
+const bottles = ref<string[]>([...BASE_COLOURS]);
 const matchNumber = ref(DEFAULT_MATCH_NUMBER);
 const classesResult = ref(["result"]);
 const snakebarOpen = ref(false);
@@ -49,20 +42,17 @@ const setSnakebarMessage = (info: string) => {
 
 const onResetGame = () => {
   rightOrder.value = shuffleArray([...BASE_COLOURS]);
-  buttles.value = [...EMPTY_ARRAY];
-  colors.value = [...BASE_COLOURS];
+  bottles.value = [...BASE_COLOURS];
   matchNumber.value = DEFAULT_MATCH_NUMBER;
   currentColor.value = "";
 
   setSnakebarMessage("Resetted!");
 };
-const selectButtle = ({ value, index }: { value: string; index: number }) => {
+const selectBottle = ({ value, index }: { value: string; index: number }) => {
   if (currentColor.value !== "") {
-    buttles.value[buttles.value.findIndex((i) => i === currentColor.value)] =
+    bottles.value[bottles.value.findIndex((i) => i === currentColor.value)] =
       value;
-    colors.value[colors.value.findIndex((i) => i === currentColor.value)] =
-      value;
-    buttles.value[index] = currentColor.value;
+    bottles.value[index] = currentColor.value;
 
     currentColor.value = "";
   } else {
@@ -74,7 +64,7 @@ const onCheckOrder = () => {
   let matchNumberLocal = 0;
 
   for (let i = 0; i < rightOrder.value.length; i += 1) {
-    if (buttles.value[i] === rightOrder.value[i]) {
+    if (bottles.value[i] === rightOrder.value[i]) {
       matchNumberLocal += 1;
     }
   }
@@ -116,11 +106,6 @@ const onCheckOrder = () => {
 .result__number {
   display: block;
   font-size: 50px;
-}
-.space {
-  height: 20px;
-  display: block;
-  width: 100%;
 }
 
 @keyframes horizontal-shaking {

@@ -88,6 +88,12 @@ const classes = computed(() => [
 .button--ghost:hover {
   background-color: color-mix(in srgb, var(--white), #000 15%);
 }
+.button--ghost:focus {
+  background-color: color-mix(in srgb, var(--white), #000 15%);
+}
+.button--ghost:active {
+  background-color: color-mix(in srgb, var(--white), #000 15%);
+}
 .button--outline {
   background: none;
   border: 1px solid var(--background);
@@ -95,6 +101,16 @@ const classes = computed(() => [
 }
 
 .button--outline:hover {
+  background: none;
+  border: 1px solid color-mix(in srgb, var(--white), #000 15%);
+  color: color-mix(in srgb, var(--white), #000 15%);
+}
+.button--outline:focus {
+  background: none;
+  border: 1px solid color-mix(in srgb, var(--white), #000 15%);
+  color: color-mix(in srgb, var(--white), #000 15%);
+}
+.button--outline:active {
   background: none;
   border: 1px solid color-mix(in srgb, var(--white), #000 15%);
   color: color-mix(in srgb, var(--white), #000 15%);
