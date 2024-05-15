@@ -1,15 +1,17 @@
 <template>
   <Teleport to="body">
     <Transition>
-      <div v-if="openModel" class="modal">
+      <div v-if="openModel" class="snakebar">
         <Button v-if="closeButton" @click="updateOpenModal">Close</Button>
-        <p class="modal__text"><slot /></p>
+        <p class="snakebar__text"><slot /></p>
       </div>
     </Transition>
   </Teleport>
 </template>
 
 <script setup lang="ts">
+import Button from "./Button.vue";
+
 export interface Props {
   delay?: number;
   closeButton?: boolean;
@@ -34,7 +36,7 @@ watch(openModel, () => {
 </script>
 
 <style scoped>
-.modal {
+.snakebar {
   background-color: var(--white);
   padding: 10px 20px;
   position: absolute;
@@ -44,7 +46,7 @@ watch(openModel, () => {
   border-radius: var(--border-radius-main);
 }
 
-.modal__text {
+.snakebar__text {
   color: var(--primary);
 }
 

@@ -5,6 +5,8 @@
     --bg-color: #414141;
     --bg-color-secondary: #555555;
     --text-color-main: #fff;
+    --text-color-dark: #000;
+    --text-color-secondary: #767676;
     --white: #e0e0e0;
     --bg-form-main: color-mix(in srgb, var(--bg-color), #000 15%);
     --border-radius-main: 10px;

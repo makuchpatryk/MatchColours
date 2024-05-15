@@ -6,6 +6,7 @@
 
 <script setup lang="ts">
 import useSignSupabase from "@/composables/useSignSupabase";
+import Button from "../ui/Button.vue";
 const config = useRuntimeConfig();
 
 const { loading, onSubmit } = useSignSupabase({
