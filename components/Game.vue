@@ -1,6 +1,10 @@
 <template>
   <div>
-    <PanelGame :items="panelItems" :props="panelItemsProps" />
+    <PanelGame
+      :items="panelItems"
+      :props="panelItemsProps"
+      :events="panelItemsEvents"
+    />
     <Row
       :colors="bottles"
       :current-color="currentColor"
@@ -9,35 +13,33 @@
     />
     <div class="action-buttons">
       <Button @click="onCheckOrder" color="secondary">Check Order</Button>
-      <Button @click="onResetGame">Reset Game</Button>
+      <Button @click="onInitGame">Reset Game</Button>
+      <Button @click="onResultModal">Show Rankings</Button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-interface Props {
-  level: TLevel;
-}
-const props = defineProps<Props>();
-const emit = defineEmits(["info", "chnage-status"]);
-const level = toRef(() => props.level);
+const emit = defineEmits(["info", "change-status", "show-ranking"]);
 const {
   bottles,
   matchNumber,
   currentColor,
   tries,
   shake,
+  startTimer,
   onCheckOrder,
   selectBottle,
   swapBottle,
-  onResetGame,
-} = useGame({ level, emit });
+  onInitGame,
+  onResultModal,
+} = useGame({ emit });
 
 import Button from "./ui/Button.vue";
 import Timer from "./Timer.vue";
 import Tries from "./Tries.vue";
 import Match from "./Match.vue";
-import type { TLevel, TPanelComponet, TPanelProps } from "~/types";
+import type { TPanelComponet, TPanelEvents, TPanelProps } from "~/types";
 
 const panelItems = computed<TPanelComponet[]>(() => [
   {
@@ -55,8 +57,12 @@ const panelItemsProps = computed<TPanelProps>(() => {
     matchNumber: matchNumber.value,
     shake: shake.value,
     tries: tries.value,
+    startTimer: startTimer.value,
   };
 });
+const panelItemsEvents = computed<TPanelEvents>(() => ({
+  getFinishedTime: () => {},
+}));
 </script>
 
 <style scoped>

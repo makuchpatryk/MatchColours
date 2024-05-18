@@ -12,6 +12,7 @@ export type TPanelProps = {
   shake?: boolean;
 };
 export type TPanelEvents = {
-  onTime: () => void;
+  getFinishedTime: () => void;
 };
+
 export type TLevel = "EASY" | "MEDIUM" | "HARD";

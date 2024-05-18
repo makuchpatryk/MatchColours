@@ -1,3 +1,5 @@
+import type { TLevel } from "~/types";
+
 export const BASE_COLOURS_EASY = ["red", "blue", "green"] as const;
 export const BASE_COLOURS_MEDIUM = [
   "black",
@@ -26,7 +28,7 @@ export const BASE_COLOURS = {
 };
 export const DEFAULT_MATCH_NUMBER = 0;
 
-export const LEVELS = {
+export const LEVELS: { EASY: TLevel; MEDIUM: TLevel; HARD: TLevel } = {
   EASY: "EASY",
   MEDIUM: "MEDIUM",
   HARD: "HARD",

@@ -20,8 +20,11 @@ export default function useSignSupabase({
         provider,
         options,
       });
+      debugger;
       if (errorSupabase) throw errorSupabase;
     } catch (errorSupabase) {
+      console.log("errorSupabase", errorSupabase);
+      debugger;
       if (errorSupabase instanceof Error) {
         error.value = errorSupabase.message;
       }

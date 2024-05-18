@@ -1,37 +1,48 @@
 import { BASE_COLOURS, DEFAULT_MATCH_NUMBER } from "@/default/game";
 import type { ToRef } from "vue";
-import type { TLevel } from "~/types";
 
-type Emit = (event: "info" | "chnage-status", ...args: any[]) => void;
+type Emit = (
+  event: "info" | "change-status" | "show-ranking",
+  ...args: any[]
+) => void;
 
-export default function useClickOutside({
-  level,
-  emit,
-}: {
-  level: ToRef<TLevel>;
-  emit: Emit;
-}) {
-  const rightOrder = ref(shuffleArray([...BASE_COLOURS[level.value]]));
-  const bottles = ref<string[]>([...BASE_COLOURS[level.value]]);
+export default function useClickOutside({ emit }: { emit: Emit }) {
+  const store = useGameStore();
+
+  const rightOrder = ref(shuffleArray([...BASE_COLOURS[store.state.level]]));
+  const bottles = ref<string[]>([...BASE_COLOURS[store.state.level]]);
   const matchNumber = ref(DEFAULT_MATCH_NUMBER);
   const currentColor = ref("");
 
   const tries = ref(0);
   const shake = ref(false);
-  watch(level, () => {
-    onResetGame({ resetSnakebar: false });
-  });
-  const onResetGame = ({
+  const startTimer = ref(false);
+
+  watch(
+    () => store.state.play,
+    () => {
+      if (store.state.play) onInitGame({ resetSnakebar: false });
+    }
+  );
+  const onInitGame = ({
     resetSnakebar = true,
   }: {
     resetSnakebar?: boolean;
   }) => {
-    rightOrder.value = shuffleArray([...BASE_COLOURS[level.value]]);
-    bottles.value = [...BASE_COLOURS[level.value]];
+    rightOrder.value = shuffleArray([...BASE_COLOURS[store.state.level]]);
+    bottles.value = [...BASE_COLOURS[store.state.level]];
     matchNumber.value = DEFAULT_MATCH_NUMBER;
     currentColor.value = "";
+    startTimer.value = false;
+    nextTick(() => {
+      startTimer.value = true;
+    });
 
     resetSnakebar ? emit("info", { info: "Resetted!" }) : "";
+  };
+
+  const onResultModal = () => {
+    emit("show-ranking");
   };
   const selectBottle = ({ value, index }: { value: string; index: number }) => {
     if (currentColor.value !== "") {
@@ -74,7 +85,9 @@ export default function useClickOutside({
     setTimeout(() => {
       if (matchNumber.value === rightOrder.value.length) {
         emit("info", { info: "You are correct!" });
-        emit("chnage-status");
+        emit("change-status");
+        startTimer.value = false;
+        // saveResult()
       }
     }, 1000);
   };
@@ -86,9 +99,11 @@ export default function useClickOutside({
     currentColor,
     tries,
     shake,
+    startTimer,
     onCheckOrder,
     selectBottle,
     swapBottle,
-    onResetGame,
+    onInitGame,
+    onResultModal,
   };
 }

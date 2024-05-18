@@ -6,10 +6,30 @@
 </template>
 
 <script setup lang="ts">
-const emit = defineEmits(["start-game"]);
+export interface Props {
+  startTimer: boolean;
+}
+
+const props = defineProps<Props>();
+const emit = defineEmits(["start"]);
 
 const timer = ref(0);
 const interval = ref();
+
+watch(
+  () => props.startTimer,
+  () => {
+    console.log("props", props.startTimer);
+    if (props.startTimer) {
+      startTimer();
+    } else {
+      timer.value = 0;
+      clearInterval(interval.value);
+      interval.value = null;
+    }
+  },
+  { immediate: true }
+);
 
 const startTimer = () => {
   if (interval.value) return;
@@ -18,11 +38,10 @@ const startTimer = () => {
     timer.value += 1;
   }, 1000);
 };
-onMounted(() => {
-  startTimer();
-});
+
 onUnmounted(() => {
   clearInterval(interval.value);
+  interval.value = null;
 });
 </script>
 
