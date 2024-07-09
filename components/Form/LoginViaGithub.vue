@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import useSignSupabase from "~/composables/useSignSupabase";
-
+console.log("test2");
 const { loading, onSubmit } = useSignSupabase({ provider: "github" });
 </script>
 
