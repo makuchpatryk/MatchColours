@@ -9,6 +9,7 @@ import useSignSupabase from "@/composables/useSignSupabase";
 import Button from "../ui/Button.vue";
 const config = useRuntimeConfig();
 console.log("patch");
+console.log("patch 2");
 const { loading, onSubmit } = useSignSupabase({
   provider: "github",
   options: {
