@@ -11,8 +11,10 @@ interface Props {
 }
 const { tries } = defineProps<Props>();
 console.log("test");
+console.log("test");
 
 console.log("test");
+console.log("test 2");
 </script>
 
 <style scoped>
