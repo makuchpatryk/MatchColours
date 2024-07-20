@@ -29,9 +29,7 @@ interface Props {
 }
 
 const openModal = defineModel();
-const { showCloseButton } = withDefaults(defineProps<Props>(), {
-  showCloseButton: true,
-});
+const { showCloseButton = true } = defineProps<Props>();
 </script>
 
 <style scoped>

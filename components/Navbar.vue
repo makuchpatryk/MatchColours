@@ -1,6 +1,6 @@
 <template>
   <div class="navbar">
-    <FormLogoutButton />
+<!--    <FormLogoutButton />-->
   </div>
 </template>
 

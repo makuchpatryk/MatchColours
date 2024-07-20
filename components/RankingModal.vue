@@ -39,7 +39,6 @@ onMounted(async () => {
     .select(
       `tries, id, finished_time_sec, created_at,profiles(email,avatar_url)`
     );
-  console.log("rankings", rankings);
   data.value = rankings;
 });
 </script>

@@ -18,10 +18,7 @@ export interface Props {
 }
 
 const openModel = defineModel();
-const { delay } = withDefaults(defineProps<Props>(), {
-  delay: 1500,
-  closeButton: false,
-});
+const { delay = 1500, closeButton = false } = defineProps<Props>();
 
 const updateOpenModal = () => {
   openModel.value = false;

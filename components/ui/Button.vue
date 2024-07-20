@@ -18,16 +18,13 @@ export interface Props {
   block?: boolean;
 }
 
-const { variants, color, size, loading, block } = withDefaults(
-  defineProps<Props>(),
-  {
-    variants: "solid",
-    color: "primary",
-    size: "regular",
-    loading: false,
-    block: false,
-  }
-);
+const {
+  variants = "solid",
+  color = "primary",
+  size = "regular",
+  loading = false,
+  block = false,
+} = defineProps<Props>();
 
 const classes = computed(() => [
   "button",

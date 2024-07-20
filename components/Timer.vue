@@ -19,7 +19,6 @@ const interval = ref();
 watch(
   () => props.startTimer,
   () => {
-    console.log("props", props.startTimer);
     if (props.startTimer) {
       startTimer();
     } else {

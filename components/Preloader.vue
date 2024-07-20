@@ -10,9 +10,7 @@ export interface Props {
   size?: TPreloaderSizes;
 }
 
-const { size } = withDefaults(defineProps<Props>(), {
-  size: "regular",
-});
+const { size = "regular" } = defineProps<Props>();
 
 const classes = computed(() => ["preloader", `preloader--${size}`]);
 </script>
