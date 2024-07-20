@@ -10,7 +10,6 @@ interface Props {
   tries: number;
 }
 const { tries } = defineProps<Props>();
-console.log("test 2");
 </script>
 
 <style scoped>
